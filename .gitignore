@@ -211,3 +211,6 @@ __marimo__/
 
 # Apple DS Store files
 .DS_Store
+
+# Build Docs
+docs/build/*
