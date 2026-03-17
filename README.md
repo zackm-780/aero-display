@@ -79,31 +79,41 @@ Local web application that repurposes legacy Android tablets to show a 50/50 spl
 
 4. **Systemd service**
 
-   Create `/etc/systemd/system/aerodisplay.service`:
+    Create `/etc/systemd/system/aerodisplay.service` with:
 
-   ```ini
-   [Unit]
-   Description=AeroDisplay FastAPI Server
-   After=network.target
+    ```bash
+    sudo tee /etc/systemd/system/aerodisplay.service >/dev/null <<'EOF'
+    [Unit]
+    Description=AeroDisplay FastAPI Server
+    After=network.target
 
-   [Service]
-   User=<your-ubuntu-username>
-   WorkingDirectory=/home/<your-ubuntu-username>/aerodisplay
-   Environment="PATH=/home/<your-ubuntu-username>/aerodisplay/venv/bin"
-   ExecStart=/home/<your-ubuntu-username>/aerodisplay/venv/bin/uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
+    [Service]
+    Type=simple
+    User=<your-ubuntu-username>
+    WorkingDirectory=/home/<your-ubuntu-username>/aerodisplay
+    Environment="PATH=/home/<your-ubuntu-username>/aerodisplay/venv/bin"
+    ExecStart=/home/<your-ubuntu-username>/aerodisplay/venv/bin/uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
+    Restart=always
+    RestartSec=5
 
-   [Install]
-   WantedBy=multi-user.target
-   ```
+    [Install]
+    WantedBy=multi-user.target
+    EOF
+    ```
 
-   Then:
+    Reload systemd and start on boot:
 
-   ```bash
-   sudo systemctl daemon-reload
-   sudo systemctl enable aerodisplay
-   sudo systemctl start aerodisplay
-   sudo systemctl status aerodisplay
-   ```
+    ```bash
+    sudo systemctl daemon-reload
+    sudo systemctl enable --now aerodisplay
+    sudo systemctl status aerodisplay
+    ```
+
+    View logs:
+
+    ```bash
+    sudo journalctl -u aerodisplay -f
+    ```
 
 ### Tablet setup (Android Tablet with Fully Kiosk)
 
