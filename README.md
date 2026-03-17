@@ -47,7 +47,7 @@ Local web application that repurposes legacy Android tablets to show a 50/50 spl
    pytest backend/tests -q
    ```
 
-### Ubuntu server deployment (AcePC headless)
+### Ubuntu server deployment (headless)
 
 1. **Install prerequisites**
 
