@@ -48,7 +48,7 @@ Functional Requirements
     
 *   **Left Pane (Flight Board):**
     
-    *   Display a stylized list of flights (Flight Number, Airline, Aircraft Type, Altitude, Speed, Distance).
+    *   Display a stylized list of flights (Flight Number, Airline, Aircraft Type, Altitude, Speed, Distance).  Show the airline's logo on the right side of each list item.
         
     *   Auto-cycle/scroll through the 200 NM list if it exceeds the screen height.
         
