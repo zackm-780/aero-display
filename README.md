@@ -105,7 +105,7 @@ Local web application that repurposes legacy Android tablets to show a 50/50 spl
    sudo systemctl status aerodisplay
    ```
 
-### Tablet setup (Galaxy Tab A with Fully Kiosk)
+### Tablet setup (Android Tablet with Fully Kiosk)
 
 1. Connect the tablet to the same Wi‑Fi network as the Ubuntu server.
 2. Install and open Fully Kiosk Browser (or Chrome).
