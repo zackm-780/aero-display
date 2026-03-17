@@ -6,6 +6,23 @@ from typing import Any, List, Tuple
 from backend.app.geo import haversine_nm
 
 
+VFR_SQUAWKS = {"1200", "7000"}
+
+
+def _looks_like_airline_callsign(callsign: str) -> bool:
+    cs = (callsign or "").strip().upper()
+    return len(cs) >= 3 and cs[:3].isalpha()
+
+
+def _is_ifr_proxy(callsign: str, squawk: str | None) -> bool:
+    # Hybrid proxy: keep flights that look like scheduled airline traffic,
+    # or flights with a non-VFR squawk code.
+    if _looks_like_airline_callsign(callsign):
+        return True
+    sq = (squawk or "").strip()
+    return bool(sq) and sq not in VFR_SQUAWKS
+
+
 @dataclass
 class Flight:
     icao24: str
@@ -37,6 +54,24 @@ def build_flight_lists(
             lon = float(state[5])
             lat = float(state[6])
         except (IndexError, TypeError, ValueError):
+            continue
+
+        try:
+            on_ground = bool(state[8])
+        except (IndexError, TypeError, ValueError):
+            on_ground = False
+
+        # Exclude taxiing/parked traffic from board and radar views.
+        if on_ground:
+            continue
+
+        squawk: str | None = None
+        try:
+            squawk = str(state[14]).strip() if state[14] is not None else None
+        except (IndexError, TypeError, ValueError):
+            squawk = None
+
+        if not _is_ifr_proxy(callsign, squawk):
             continue
 
         distance = haversine_nm(center_lat, center_lon, lat, lon)

@@ -39,7 +39,7 @@ Local web application that repurposes legacy Android tablets to show a 50/50 spl
 
 4. **Open the UI**
 
-   Visit `http://localhost:8000` in a browser. You should see the split-screen layout; once OpenSky polling and WebSocket wiring are fully implemented, flights and radar blips will populate automatically.
+   Visit `http://localhost:8000` (or `http://localhost:8000/ui/`) in a browser. The root URL redirects to the app. You should see the split-screen layout; flights and radar blips populate via the WebSocket feed.
 
 5. **Run tests**
 
@@ -124,6 +124,13 @@ source venv/bin/activate
 pip install -r backend/requirements.txt
 sudo systemctl restart aerodisplay
 ```
+
+### Airline logo credits
+
+Airline logo images used by the nearby-flights board are sourced from the `flightaware_logos` dataset in the `Jxck-S/airline-logos` repository:
+- [Jxck-S/airline-logos — flightaware_logos](https://github.com/Jxck-S/airline-logos/tree/main/flightaware_logos)
+
+Logos are stored locally under `frontend/assets/logos/flightaware_logos/` and resolved by ICAO airline code filename (for example `UAL.png`, `DAL.png`).
 
 ### Troubleshooting
 

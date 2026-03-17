@@ -4,6 +4,10 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List
 
 from backend.app.flight_models import Flight
+from backend.app.settings import get_settings
+
+
+_settings = get_settings()
 
 
 def _flight_to_dict(f: Flight) -> Dict[str, Any]:
@@ -29,6 +33,8 @@ def build_payload(
 ) -> Dict[str, Any]:
     """Build the JSON-serializable payload pushed over WebSocket."""
     now_iso = datetime.now(timezone.utc).isoformat()
+    airport_elevation_ft = center.get("elevation_ft")
+    transition_altitude_ft = center.get("transition_altitude_ft", _settings.transition_altitude_ft)
     return {
         "center": {
             "icao": center["icao"],
@@ -41,6 +47,8 @@ def build_payload(
         "meta": {
             "stale": stale,
             "generatedAt": now_iso,
+            "airportElevationFt": airport_elevation_ft,
+            "transitionAltitudeFt": transition_altitude_ft,
         },
     }
 

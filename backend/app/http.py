@@ -54,5 +54,7 @@ async def set_center(
 
 def mount_static(app) -> None:
     frontend_path = get_settings().resolved_frontend_dir
-    app.mount("/", StaticFiles(directory=str(frontend_path), html=True), name="frontend")
+    # Mount the SPA under /ui so websocket traffic to /ws does not get
+    # routed through StaticFiles (which only understands HTTP requests).
+    app.mount("/ui", StaticFiles(directory=str(frontend_path), html=True), name="frontend")
 
