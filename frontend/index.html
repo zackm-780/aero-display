@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AeroDisplay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app-root">
+      <main class="layout">
+        <section class="pane pane-board">
+          <header class="pane-header">
+            <h1 class="pane-title">Nearby Flights</h1>
+            <div class="status-line">
+              <span id="connection-status" class="status-pill status-pill--disconnected"
+                >Disconnected</span
+              >
+              <span id="staleness-indicator" class="staleness staleness--fresh">Live</span>
+            </div>
+          </header>
+          <div id="flight-list" class="flight-list"></div>
+        </section>
+
+        <section class="pane pane-radar">
+          <header class="pane-header">
+            <h1 class="pane-title">Radar</h1>
+            <div class="pane-header-controls">
+              <div class="range-control" aria-label="Radar range">
+                <button class="range-button" data-range="20" type="button">20 nm</button>
+                <button class="range-button range-button--active" data-range="50" type="button">50 nm</button>
+                <button class="range-button" data-range="100" type="button">100 nm</button>
+                <button class="range-button" data-range="200" type="button">200 nm</button>
+              </div>
+              <button id="settings-button" class="settings-button" type="button">Settings</button>
+            </div>
+          </header>
+          <div class="radar-wrapper">
+            <div id="map" class="radar-map"></div>
+            <div class="radar-sweep"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="settings-modal" class="modal modal--hidden" aria-hidden="true">
+      <div class="modal-backdrop"></div>
+      <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+        <header class="modal-header">
+          <h2 id="settings-title">Center ICAO</h2>
+          <button id="settings-close" class="icon-button" type="button" aria-label="Close">
+            ✕
+          </button>
+        </header>
+        <form id="settings-form" class="modal-body">
+          <label class="field">
+            <span class="field-label">ICAO code</span>
+            <input
+              id="icao-input"
+              name="icao"
+              type="text"
+              maxlength="4"
+              autocomplete="off"
+              autocapitalize="characters"
+              required
+            />
+          </label>
+          <p id="settings-error" class="form-error" aria-live="polite"></p>
+          <footer class="modal-footer">
+            <button type="submit" class="primary-button">Update center</button>
+          </footer>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
+

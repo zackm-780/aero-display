@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+httpx
+websockets
+python-dotenv
+pytest
+pydantic>=1.10
+
+
