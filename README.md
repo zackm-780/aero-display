@@ -4,6 +4,8 @@ Local web application that repurposes legacy Android tablets to show a 50/50 spl
 
 Want to buy me a coffee?  [buymeacoffee.com/zackm](https://buymeacoffee.com/zackm)
 
+![1000007581](https://github.com/user-attachments/assets/67969e3e-2af9-40c4-842c-a05a06286bce)
+
 ### Features
 
 - **Flight board (left pane)**: Auto-scrolling list of flights within 200 NM, sorted by proximity.
