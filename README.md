@@ -2,6 +2,8 @@
 
 Local web application that repurposes legacy Android tablets to show a 50/50 split between a FlightWall-style flight board and an ATC-style radar map of nearby traffic. The backend runs on an Ubuntu box (FastAPI + Python) and pushes pre-processed flight data to a kiosk-mode tablet over your LAN.
 
+Want to buy me a coffee?  [buymeacoffee.com/zackm](https://buymeacoffee.com/zackm)
+
 ### Features
 
 - **Flight board (left pane)**: Auto-scrolling list of flights within 200 NM, sorted by proximity.
