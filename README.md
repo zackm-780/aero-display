@@ -43,7 +43,7 @@ Want to buy me a coffee?  [buymeacoffee.com/zackm](https://buymeacoffee.com/zack
 
 4. **Open the UI**
 
-   Visit `http://localhost:8000` (or `http://localhost:8000/ui/`) in a browser. The root URL redirects to the app. You should see the split-screen layout; flights and radar blips populate via the WebSocket feed.
+   Visit `http://localhost:8000/ui/` in a browser. The root URL redirects to the app. You should see the split-screen layout; flights and radar blips populate via the WebSocket feed.
 
 5. **Run tests**
 
@@ -79,7 +79,7 @@ Want to buy me a coffee?  [buymeacoffee.com/zackm](https://buymeacoffee.com/zack
    uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
    ```
 
-   From another machine or the tablet, hit `http://<server-ip>:8000` to confirm the UI loads.
+   From another machine or the tablet, hit `http://<server-ip>:8000/ui` to confirm the UI loads.
 
 4. **Systemd service**
 
@@ -123,7 +123,7 @@ Want to buy me a coffee?  [buymeacoffee.com/zackm](https://buymeacoffee.com/zack
 
 1. Connect the tablet to the same Wi‑Fi network as the Ubuntu server.
 2. Install and open Fully Kiosk Browser (or Chrome).
-3. Set the start URL to `http://<server-ip>:8000`.
+3. Set the start URL to `http://<server-ip>:8000/ui`.
 4. Enable kiosk/fullscreen mode so the UI runs continuously without UI chrome.
 
 ### Updating the deployment
